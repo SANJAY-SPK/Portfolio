@@ -3,13 +3,28 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { projects } from '@/lib/projects';
-import { SearchIcon, XIcon } from 'lucide-react';
+import { SearchIcon, XIcon, Mail, FileText, Code, Zap, Database, Wrench, Layers, Cpu, GraduationCap, Award } from 'lucide-react';
 const navTabs = [
   { id: 'for-you', label: 'For you' },
-  { id: 'top-charts', label: 'Top charts' },
+  { id: 'top-charts', label: 'Projects' },
   { id: 'skills', label: 'Skills' },
   { id: 'certifications', label: 'Certifications' },
 ];
+
+const Github = ({ className }: { className?: string }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.24c3-.34 6-1.53 6-6.76a5.5 5.5 0 0 0-1.5-3.8 5.2 5.2 0 0 0-.15-3.7s-1.2-.38-3.9 1.4a13.38 13.38 0 0 0-7 0c-2.7-1.78-3.9-1.4-3.9-1.4a5.2 5.2 0 0 0-.15 3.7A5.5 5.5 0 0 0 3 8.2c0 5.23 3 6.42 6 6.76a4.8 4.8 0 0 0-1 3.24v4"></path>
+    <path d="M9 18c-4.51 2-5-2-7-2"></path>
+  </svg>
+);
+
+const Linkedin = ({ className }: { className?: string }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+    <rect x="2" y="9" width="4" height="12"></rect>
+    <circle cx="4" cy="4" r="2"></circle>
+  </svg>
+);
 
 export default function Home() {
   const [searchQuery, setSearchQuery] = useState('');
@@ -22,7 +37,6 @@ export default function Home() {
       p.short.toLowerCase().includes(searchQuery.toLowerCase());
   });
 
-  const featuredProject = projects.find(p => p.featured);
 
   return (
     <div className="min-h-screen bg-white">
@@ -97,43 +111,7 @@ export default function Home() {
         {/* Tab: For You */}
         {activeTab === 'for-you' && (
           <div>
-            {/* Featured Banner */}
-            {featuredProject && (
-              <div className="px-4 md:px-6 pt-6 pb-2">
-                <Link href={`/projects/${featuredProject.id}`}>
-                  <div className="featured-banner flex flex-col md:flex-row bg-[#f0fdf4] rounded-2xl overflow-hidden transition-shadow">
-                    <div className="flex-1 p-6 md:p-10 flex flex-col justify-center">
-                      <div className="flex items-center gap-3 mb-4">
-                        <div
-                          className="w-14 h-14 rounded-[14px] flex items-center justify-center text-3xl text-white shadow-sm"
-                          style={{ backgroundColor: featuredProject.color }}
-                        >
-                          {featuredProject.icon}
-                        </div>
-                        <div>
-                          <div className="text-[11px] font-medium text-green-primary uppercase tracking-wider">Featured Project</div>
-                          <div className="text-[14px] text-ink-soft">{featuredProject.role}</div>
-                        </div>
-                      </div>
-                      <h2 className="text-2xl md:text-[32px] font-medium text-ink-main leading-tight mb-3" style={{ fontFamily: "'Google Sans', sans-serif" }}>
-                        {featuredProject.name}
-                      </h2>
-                      <p className="text-[14px] md:text-[16px] text-ink-soft leading-relaxed max-w-lg">
-                        {featuredProject.short}
-                      </p>
-                      {featuredProject.publicationNote && (
-                        <div className="mt-4 inline-flex items-center gap-2 bg-white/80 rounded-full px-4 py-2 text-[13px] text-green-primary font-medium border border-green-primary/20">
-                          <span>🏆</span> {featuredProject.publicationNote}
-                        </div>
-                      )}
-                    </div>
-                    <div className="w-full md:w-[400px] h-[200px] md:h-auto bg-gradient-to-br from-[#01875F] to-[#016B4B] flex items-center justify-center text-8xl opacity-90">
-                      {featuredProject.icon}
-                    </div>
-                  </div>
-                </Link>
-              </div>
-            )}
+            {/* Featured Banner Removed */}
 
             {/* Developer Profile Section (like "Suggested for you") */}
             <section className="px-4 md:px-6 pt-8 pb-2">
@@ -147,14 +125,31 @@ export default function Home() {
                   </div>
                   <div className="flex-1 min-w-0">
                     <h3 className="text-xl md:text-2xl font-medium text-ink-main mb-1" style={{ fontFamily: "'Google Sans', sans-serif" }}>Sanjay S</h3>
-                    <p className="text-[14px] text-green-primary font-medium mb-3">Application Developer</p>
+                    <p className="text-[14px] text-green-primary font-medium mb-3">UI Developer</p>
                     <p className="text-[14px] text-ink-soft leading-relaxed max-w-2xl">
                       React Native & Spring Boot developer — currently building TUGO EATS at Entugo (UK), published IEEE researcher. B.E ECE (2025).
                     </p>
+                    
+                    {/* Social Links */}
+                    <div className="flex items-center gap-3 mt-3">
+                      <a href="https://github.com/SANJAY-SPK" target="_blank" rel="noopener noreferrer" className="p-2 rounded-full hover:bg-[#f1f3f4] text-[#5F6368] transition-colors" aria-label="GitHub">
+                        <Github className="w-5 h-5" />
+                      </a>
+                      <a href="https://www.linkedin.com/in/sanjays2261" target="_blank" rel="noopener noreferrer" className="p-2 rounded-full hover:bg-[#f1f3f4] text-[#5F6368] transition-colors" aria-label="LinkedIn">
+                        <Linkedin className="w-5 h-5" />
+                      </a>
+                      <a href="mailto:sanjaysivakumar2261@gmail.com" className="p-2 rounded-full hover:bg-[#f1f3f4] text-[#5F6368] transition-colors" aria-label="Email">
+                        <Mail className="w-5 h-5" />
+                      </a>
+                      <a href="#" className="p-2 rounded-full hover:bg-[#f1f3f4] text-[#5F6368] transition-colors" aria-label="Resume">
+                        <FileText className="w-5 h-5" />
+                      </a>
+                    </div>
+
                     <div className="flex flex-col md:flex-row md:items-center gap-3 mt-4 pt-4 border-t border-[#e8eaed]">
                       <div>
                         <div className="text-[13px] font-medium text-ink-main">Entugo (UK) — Remote</div>
-                        <div className="text-[12px] text-ink-soft">Application Developer Intern · Sep 2025 – Present</div>
+                        <div className="text-[12px] text-ink-soft">UI Developer Intern · Sep 2025 – Present</div>
                       </div>
                     </div>
                   </div>
@@ -276,40 +271,40 @@ export default function Home() {
           <div className="px-4 md:px-6 pt-6 pb-8">
             <h2 className="text-[22px] font-medium text-ink-main mb-6" style={{ fontFamily: "'Google Sans', sans-serif" }}>Skills & tools</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {[
-                {
-                  title: 'Languages',
-                  icon: '💻',
-                  items: ['Java', 'JavaScript', 'TypeScript', 'Python'],
-                  color: '#4285F4'
-                },
+                {[
+                  {
+                    title: 'Languages',
+                    icon: <Code className="w-5 h-5" />,
+                    items: ['Java', 'JavaScript', 'TypeScript', 'Python'],
+                    color: '#4285F4'
+                  },
                 {
                   title: 'Frameworks',
-                  icon: '⚡',
+                  icon: <Zap className="w-5 h-5" />,
                   items: ['React Native (Expo)', 'Spring Boot', 'React', 'Django'],
                   color: '#EA4335'
                 },
                 {
                   title: 'Databases',
-                  icon: '🗄️',
+                  icon: <Database className="w-5 h-5" />,
                   items: ['PostgreSQL', 'MySQL', 'MongoDB'],
                   color: '#34A853'
                 },
                 {
                   title: 'Tools & Platforms',
-                  icon: '🛠️',
+                  icon: <Wrench className="w-5 h-5" />,
                   items: ['Git / GitHub', 'Postman', 'Expo CLI', 'Docker'],
                   color: '#FBBC04'
                 },
                 {
                   title: 'Architecture',
-                  icon: '🏗️',
+                  icon: <Layers className="w-5 h-5" />,
                   items: ['REST APIs', 'JWT Auth', 'MVC', 'Zustand / State Mgmt'],
                   color: '#01875F'
                 },
                 {
                   title: 'Hardware & IoT',
-                  icon: '🔌',
+                  icon: <Cpu className="w-5 h-5" />,
                   items: ['ESP32', 'RFID (MFRC522)', 'QR Scanning'],
                   color: '#5F6368'
                 },
@@ -340,7 +335,9 @@ export default function Home() {
               <h2 className="text-[16px] font-medium text-ink-main mb-4" style={{ fontFamily: "'Google Sans', sans-serif" }}>Education</h2>
               <div className="border border-[#e8eaed] rounded-xl p-5">
                 <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 rounded-xl bg-[#f1f3f4] flex items-center justify-center text-2xl shrink-0">🎓</div>
+                  <div className="w-12 h-12 rounded-xl bg-[#f1f3f4] flex items-center justify-center text-[#5F6368] shrink-0">
+                    <GraduationCap className="w-6 h-6" />
+                  </div>
                   <div>
                     <h3 className="text-[15px] font-medium text-ink-main">B.E Electronics and Communication Engineering</h3>
                     <p className="text-[14px] text-ink-soft mt-0.5">Karpagam Institute of Technology, Coimbatore</p>
@@ -361,10 +358,10 @@ export default function Home() {
             <h2 className="text-[22px] font-medium text-ink-main mb-6" style={{ fontFamily: "'Google Sans', sans-serif" }}>Certifications</h2>
             <div className="space-y-0">
               {[
-                { name: 'React Native', issuer: 'Meta / Coursera', year: '2023', icon: '⚛️', color: '#61DAFB' },
-                { name: 'Java Full Stack Development', issuer: 'Wipro Talent Next', year: '2024', icon: '☕', color: '#F89820' },
-                { name: 'OOPs in Java', issuer: 'Coding Ninjas', year: '2024', icon: '🧩', color: '#F5A623' },
-                { name: 'AEM Sites for Developer', issuer: 'Adobe', year: '', icon: '🅰️', color: '#FF0000' },
+                { name: 'React Native', issuer: 'Meta / Coursera', year: '2023', icon: <Award className="w-6 h-6" />, color: '#61DAFB' },
+                { name: 'Java Full Stack Development', issuer: 'Wipro Talent Next', year: '2024', icon: <Award className="w-6 h-6" />, color: '#F89820' },
+                { name: 'OOPs in Java', issuer: 'Coding Ninjas', year: '2024', icon: <Award className="w-6 h-6" />, color: '#F5A623' },
+                { name: 'AEM Sites for Developer', issuer: 'Adobe', year: '', icon: <Award className="w-6 h-6" />, color: '#FF0000' },
               ].map(cert => (
                 <div key={cert.name} className="flex items-center gap-4 py-4 px-3 rounded-xl hover:bg-[#f1f3f4] transition-colors border-b border-[#e8eaed] last:border-0">
                   <div

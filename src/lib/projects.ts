@@ -2,6 +2,7 @@ export interface ProjectSection {
   title: string;
   content: string;
   imagePlaceholder?: string;
+  images?: string[];
 }
 
 export interface Project {
@@ -19,6 +20,10 @@ export interface Project {
   icon: string;
   color: string;
   sections?: ProjectSection[];
+  screenshots?: string[];
+  githubUrl?: string;
+  liveUrl?: string;
+  organization?: string;
 }
 
 export const projects: Project[] = [
@@ -38,7 +43,7 @@ export const projects: Project[] = [
   {
     id: "power-house",
     name: "Power House Fitness Studio",
-    role: "Personal/client project",
+    role: "Client project",
     category: "fullstack",
     status: "In Development",
     short: "Full-stack gym management app with member and admin flows.",
@@ -84,66 +89,154 @@ export const projects: Project[] = [
     publicationNote: "Published at IEEE ICICT 2025",
     icon: "💊",
     color: "#016B4B",
+    screenshots: [
+      "/assets/Meditrack/Home Screen.png",
+      "/assets/Meditrack/Inventory Screen.png",
+      "/assets/Meditrack/Product Specification Screen.png",
+      "/assets/Meditrack/Order Listing Screen.png",
+      "/assets/Meditrack/Order Suppliers Screen.png",
+      "/assets/Meditrack/Transaction Screen.png",
+      "/assets/Meditrack/Report Screen.png",
+    ],
     sections: [
       {
         title: "System Architecture",
         content: "The system follows a multi-layered architecture consisting of a Hardware Layer (ESP32, RFID MFRC522 reader, QR scanner), an Application Layer (Django REST API server + MySQL database), and a Presentation Layer (React TS dashboard). This setup ensures seamless real-time synchronization between physical inventory scans and digital database records.",
-        imagePlaceholder: "Architecture Diagram (Hardware Layer, Application Layer, Presentation Layer)"
+        images: ["/assets/Meditrack/System Architecture.png"]
       },
       {
-        title: "Hardware Integration & Synchronization",
-        content: "The ESP32 microcontroller acts as the central hub, reading RFID tags attached to incoming medicine packages via the MFRC522 module. Data is transmitted securely over Wi-Fi to the Django backend. The system achieves a typical delay of under 2 seconds between a physical scan and the dashboard update, ensuring highly accurate real-time inventory tracking.",
-        imagePlaceholder: "ESP32 + RFID Scanner Hardware Setup"
+        title: "Database Design",
+        content: "The ER diagram captures the relational structure of the system, including entities for medicines, suppliers, transactions, orders, and inventory logs. The schema is normalized to minimize redundancy and supports efficient querying for real-time dashboard analytics.",
+        images: ["/assets/Meditrack/ER - Diagram.png"]
+      },
+      {
+        title: "Dashboard & Inventory Management",
+        content: "The home dashboard provides a high-level overview of stock levels, expiry alerts, and recent activity. The inventory screen enables full CRUD operations on medicine records with filtering, search, and batch actions. Product specification screens show detailed views including stock history and supplier info.",
+        images: [
+          "/assets/Meditrack/Home Screen.png",
+          "/assets/Meditrack/Inventory Screen.png",
+          "/assets/Meditrack/Product Specification Screen.png"
+        ]
+      },
+      {
+        title: "Orders, Transactions & Reporting",
+        content: "The order management module handles supplier procurement with status tracking. The transaction screen logs all stock movements (inbound/outbound). The reporting module generates analytics on stock turnover, expiry rates, and demand patterns to support data-driven decision making.",
+        images: [
+          "/assets/Meditrack/Order Listing Screen.png",
+          "/assets/Meditrack/Order Suppliers Screen.png",
+          "/assets/Meditrack/Transaction Screen.png",
+          "/assets/Meditrack/Report Screen.png"
+        ]
+      },
+      {
+        title: "Data Flow Diagram",
+        content: "The data flow diagram illustrates how information moves between the hardware layer, backend services, and the frontend dashboard — from RFID/QR scans through the Django API to the React TS interface.",
+        images: ["/assets/Meditrack/Data flow diagram.png"]
       },
       {
         title: "AI Demand Forecasting",
         content: "Integrated with Facebook Prophet, the system analyzes historical sales data to predict future stock requirements. By forecasting trends and detecting seasonality spikes, the AI model generates automated alerts for upcoming low-stock scenarios, reducing medicine wastage by an estimated 40%.",
-        imagePlaceholder: "AI Forecast Chart for Medicine Stock Trends"
-      },
-      {
-        title: "Testing & Results",
-        content: "The platform underwent extensive performance and security testing. It maintained an average API response time of under 200ms and frontend load times under 3 seconds. The hardware achieved a 95%+ data transmission success rate, successfully mitigating stockouts and effectively tracking expiration dates.",
-        imagePlaceholder: "Dashboard Analytics & Reports Overview"
+        images: [
+          "/assets/Meditrack/AI forecast Sample 1.png",
+          "/assets/Meditrack/AI forecast Sample 2.png",
+          "/assets/Meditrack/AI Forecast Sample 3.png"
+        ]
       }
     ]
   },
   {
     id: "university-management-system",
     name: "University Management System",
-    role: "React Native Integration Lead",
+    role: "React Native Integration Lead — Tech Mahindra COE",
     category: "fullstack",
     status: "Completed",
-    short: "Large-scale academic management app for students, faculty, admins.",
-    about: "The University Management System (UMS) is a comprehensive full-stack web and mobile application developed using Spring Boot for the backend and React/React Native for the frontend, aimed at digitizing and streamlining key academic and administrative operations within a university. It supports role-based access for students, faculty, and administrators, enabling secure and efficient management of profiles, course catalogs, enrollments, attendance, exams, assignments, and authentication.",
+    short: "Tech Mahindra COE project — large-scale academic management app for students, faculty, admins.",
+    about: "The University Management System (UMS) is a Tech Mahindra Center of Excellence (COE) project — a comprehensive full-stack web and mobile application developed using Spring Boot for the backend and React/React Native for the frontend. Carried out by 10 specialized teams (5 Backend + 5 Frontend), the system digitizes and streamlines key academic and administrative operations within a university. It supports role-based access for students, faculty, and administrators, enabling secure and efficient management of profiles, course catalogs, enrollments, attendance, exams, assignments, and authentication.",
     stack: ["React Native", "Spring Boot", "React", "MongoDB", "GridFS", "JWT Auth", "Role-based access"],
     rating: null,
     icon: "🎓",
     color: "#5F6368",
+    githubUrl: "https://github.com/techMKce",
+    organization: "Tech Mahindra COE",
+    screenshots: [
+      "/assets/UMS/Admin Profile.png",
+      "/assets/UMS/Course Management.png",
+      "/assets/UMS/Faculty Profile.png",
+      "/assets/UMS/Time Table.png",
+      "/assets/UMS/Faculty management.png",
+    ],
     sections: [
+      {
+        title: "System Architecture & Database Design",
+        content: "The UMS uses a microservice-inspired architecture with Spring Boot powering multiple backend modules. The ER diagram captures entities for Users, Courses, Enrollments, Attendance, Exams, Assignments, and Submissions across relational (MySQL) and document (MongoDB) stores.",
+        images: [
+          "/assets/UMS/Architecture Diagram.png",
+        ]
+      },
       {
         title: "My Role & Contributions",
         content: "I served as the Team Lead and React Native Integration Lead. My core responsibilities included full mobile app architecture design, React Native integration with the Spring Boot backend, and developing the Mobile Exam Timetable feature. I ensured seamless cross-platform experiences and secure REST API consumption for mobile workflows.",
-        imagePlaceholder: "Mobile App Architecture Diagram & Screenshots"
+        images: [
+          "/assets/UMS/Time Table.png",
+          "/assets/UMS/Student Screen.png",
+          "/assets/UMS/Time Table Schedule.png"
+        ]
       },
       {
         title: "Team & Collaboration",
         content: "UMS is a Tech Mahindra COE (Center of Excellence) project carried out by 10 specialized teams (5 Backend Teams and 5 Frontend Teams) across the organization. The module teams included:\n• Authentication & Authorization\n• Profile & Enrollment\n• Course Catalog & Search\n• Attendance & Exams (My Team)\n• Assignments & Gradings\n\nGitHub Organization: https://github.com/techMKce",
-        imagePlaceholder: "Tech Mahindra COE Collaboration / GitHub Org"
+        images: ["/assets/UMS/ER Diagram.png"]
       },
       {
-        title: "Key Objectives & Outcomes",
-        content: "1. Centralized Academic Management: Unified student and faculty operations.\n2. Role-Based Access Control: Secured the system using JWT-based authentication for Student, Faculty, and Admin roles.\n3. Smart Course Catalog: Implemented full-text search, live suggestions, and filtering mechanisms.\n4. Automated Attendance & Exam Scheduling: Facilitated attendance tracking and automated exam timetable generation with CSV/ICS exports.\n5. Assignment & Grading Workflow: Digital assignment creation, file submission using GridFS, grading, and report generation.",
-        imagePlaceholder: "Course Catalog & Exam Timetable UI"
+        title: "Admin & Profile Management",
+        content: "The Authentication Module uses Spring Boot and JWT to secure routes based on user roles. It features Admin CRUD operations for user management, role-based conditional rendering in React, and an email notification system for password resets. The Profile & Enrollment module allows real-time course enrollments, profile picture multipart file uploads, and tracking of enrolled courses.",
+        images: [
+          "/assets/UMS/Admin Profile.png",
+          "/assets/UMS/Student Screen.png",
+          "/assets/UMS/Profile Update.png",
+          "/assets/UMS/Faculty Profile.png",
+          "/assets/UMS/Faculty Profile Update.png"
+        ]
       },
       {
-        title: "Module Deep-Dive: Authentication & Profiles",
-        content: "The Authentication Module uses Spring Boot and JWT to secure routes based on user roles. It features Admin CRUD operations for user management, role-based conditional rendering in React, and an email notification system (SendGrid/JavaMailSender) for password resets. The Profile & Enrollment module allows real-time course enrollments, profile picture multipart file uploads, and tracking of enrolled courses.",
-        imagePlaceholder: "Authentication Flow & Profile Management Dashboard"
-      },
+        title: "Course & Faculty Management",
+        content: "The course catalog supports full CRUD, section management, content uploads (PDF/URL), and search with live suggestions. Faculty management includes form-based creation, assignment to students, and department-wise filtering.",
+        images: [
+          "/assets/UMS/Course Management.png",
+          "/assets/UMS/Faculty management.png",
+          "/assets/UMS/Faculty Form.png",
+          "/assets/UMS/Assign Student to Faculty.png",
+          "/assets/UMS/Picture2.png"
+        ]
+      }
+    ]
+  },
+  {
+    id: "food-explore-25",
+    name: "ICSSS-FoodXplore'25",
+    role: "Freelance / Developer",
+    category: "frontend",
+    status: "Live",
+    short: "Responsive conference website for Tamil Nadu Agricultural University.",
+    about: "Developed the official conference website for ICSSS-FoodXplore'25, an international conference hosted by Tamil Nadu Agricultural University (TNAU). The site provides information on themes, registration, events, and committees, featuring a responsive, modern design with an announcement ticker and downloadable resources.",
+    stack: ["HTML5", "CSS3", "JavaScript", "Responsive Design", "Vercel"],
+    rating: null,
+    icon: "🌾",
+    color: "#2e7d32",
+    githubUrl: "https://github.com/SANJAY-SPK/Food-Explore-25",
+    liveUrl: "https://food-explore-25.vercel.app/",
+    organization: "TNAU (Freelance)",
+    screenshots: [
+      "/assets/FoodXplore/HomePage.png",
+      "/assets/FoodXplore/registration.png",
+      "/assets/FoodXplore/location.png",
+      "/assets/FoodXplore/themes.png",
+      "/assets/FoodXplore/event.png",
+    ],
+    sections: [
       {
-        title: "Module Deep-Dive: Assignments & Gradings",
-        content: "Built using Spring Boot and MongoDB/GridFS, this module handles multipart file uploads for assignments and submissions. Faculty can create assignments, accept/reject submissions (triggering email notifications), and assign grades. Students can track their progress percentage and average grade via real-time dashboard visualizers. Data can be exported as CSV reports.",
-        imagePlaceholder: "Grading Dashboard & GridFS File Upload Flow"
+        title: "Project Scope",
+        content: "Built a fully responsive, multi-page website from scratch to handle information dissemination for the International Conference on Safe, Standard and Sustainable Food Processing for a Healthier Tomorrow. The site was built to be fast, accessible, and easily navigable across mobile and desktop devices.",
       }
     ]
   }

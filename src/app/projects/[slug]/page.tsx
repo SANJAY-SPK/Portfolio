@@ -1,4 +1,5 @@
 import { notFound } from 'next/navigation';
+import Image from 'next/image';
 import Link from 'next/link';
 import { projects } from '@/lib/projects';
 
@@ -63,20 +64,32 @@ export default async function ProjectDetail({ params }: { params: Promise<{ slug
               <span>{project.category === 'mobile' ? 'Mobile' : project.category === 'fullstack' ? 'Full-stack' : 'Project'}</span>
             </div>
 
-            {/* Install Button (desktop) */}
+            {/* Primary CTA Button (desktop) */}
             <div className="hidden md:block">
-              <button className="bg-[#01875F] hover:bg-[#016B4B] text-white rounded-lg px-8 py-2.5 text-[14px] font-medium transition-colors shadow-sm">
-                Install
-              </button>
+              {project.liveUrl ? (
+                <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="inline-block bg-[#01875F] hover:bg-[#016B4B] text-white rounded-lg px-8 py-2.5 text-[14px] font-medium transition-colors shadow-sm">
+                  Visit Website
+                </a>
+              ) : project.githubUrl ? (
+                <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" className="inline-block bg-[#01875F] hover:bg-[#016B4B] text-white rounded-lg px-8 py-2.5 text-[14px] font-medium transition-colors shadow-sm">
+                  View Source Code
+                </a>
+              ) : null}
             </div>
           </div>
         </div>
 
-        {/* Install Button (mobile) */}
-        <div className="md:hidden mb-6">
-          <button className="w-full bg-[#01875F] hover:bg-[#016B4B] text-white rounded-lg py-2.5 text-[14px] font-medium transition-colors">
-            Install
-          </button>
+        {/* Primary CTA Button (mobile) */}
+        <div className="md:hidden mb-6 flex flex-col gap-3">
+          {project.liveUrl ? (
+            <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="w-full text-center bg-[#01875F] hover:bg-[#016B4B] text-white rounded-lg py-2.5 text-[14px] font-medium transition-colors shadow-sm">
+              Visit Website
+            </a>
+          ) : project.githubUrl ? (
+            <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" className="w-full text-center bg-[#01875F] hover:bg-[#016B4B] text-white rounded-lg py-2.5 text-[14px] font-medium transition-colors shadow-sm">
+              View Source Code
+            </a>
+          ) : null}
         </div>
 
         {/* Stats Row (like Play Store: rating, downloads, etc.) */}
@@ -124,25 +137,50 @@ export default async function ProjectDetail({ params }: { params: Promise<{ slug
           </div>
         )}
 
+        {/* Organization & GitHub Banner */}
+        {(project.organization || project.githubUrl) && (
+          <div className="mb-6 flex flex-col sm:flex-row gap-3">
+            {project.organization && (
+              <div className="flex-1 bg-[#f8f9fa] rounded-xl p-4 flex items-center gap-3 border border-[#e8eaed]">
+                <div>
+                  <div className="text-[12px] text-ink-soft">Organization</div>
+                  <div className="text-[14px] font-medium text-ink-main">{project.organization}</div>
+                </div>
+              </div>
+            )}
+          </div>
+        )}
+
         {/* Screenshots Row */}
-        <div className="flex gap-3 overflow-x-auto scrollbar-hide pb-4 mb-6 snap-x">
-          {(project.sections ? 
-            project.sections.filter(s => s.imagePlaceholder).map((s, i) => ({ label: s.imagePlaceholder || `Screenshot ${i + 1}` }))
-            : [{label: 'Screenshot 1'}, {label: 'Screenshot 2'}, {label: 'Screenshot 3'}]
-          ).map((s, i) => (
-            <div 
-              key={i} 
-              className="shrink-0 w-[200px] h-[355px] rounded-[12px] bg-[#f1f3f4] flex flex-col items-center justify-center text-ink-soft text-[12px] text-center p-4 border border-[#e8eaed] snap-center"
-            >
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="mb-3 opacity-40">
-                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
-                <circle cx="8.5" cy="8.5" r="1.5"></circle>
-                <polyline points="21 15 16 10 5 21"></polyline>
-              </svg>
-              <span className="px-2 leading-relaxed">{s.label}</span>
-            </div>
-          ))}
-        </div>
+        {project.screenshots && project.screenshots.length > 0 ? (
+          <div className="flex gap-3 overflow-x-auto scrollbar-hide pb-4 mb-6 snap-x">
+            {project.screenshots.map((src, i) => (
+              <div key={i} className="shrink-0 w-[240px] md:w-[320px] rounded-[12px] overflow-hidden border border-[#e8eaed] snap-center bg-[#f8f9fa]">
+                <Image
+                  src={src}
+                  alt={`${project.name} screenshot ${i + 1}`}
+                  width={640}
+                  height={400}
+                  className="w-full h-auto object-cover"
+                  priority={i < 2}
+                />
+              </div>
+            ))}
+          </div>
+        ) : (
+          <div className="flex gap-3 overflow-x-auto scrollbar-hide pb-4 mb-6 snap-x">
+            {[1, 2, 3].map((s) => (
+              <div key={s} className="shrink-0 w-[200px] h-[355px] rounded-[12px] bg-[#f1f3f4] flex flex-col items-center justify-center text-ink-soft text-[12px] text-center p-4 border border-[#e8eaed] snap-center">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="mb-3 opacity-40">
+                  <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                  <circle cx="8.5" cy="8.5" r="1.5"></circle>
+                  <polyline points="21 15 16 10 5 21"></polyline>
+                </svg>
+                <span className="px-2 leading-relaxed">Screenshot {s}</span>
+              </div>
+            ))}
+          </div>
+        )}
 
         {/* About this app */}
         <section className="mb-8">
@@ -167,10 +205,25 @@ export default async function ProjectDetail({ params }: { params: Promise<{ slug
 
         {/* Detailed Sections */}
         {project.sections && project.sections.length > 0 && (
-          <section className="mb-8 space-y-8">
+          <section className="mb-8 space-y-10">
             {project.sections.map((section, idx) => (
               <div key={idx}>
-                {section.imagePlaceholder && (
+                {/* Real images */}
+                {section.images && section.images.length > 0 ? (
+                  <div className="flex gap-3 overflow-x-auto scrollbar-hide pb-3 mb-4 snap-x">
+                    {section.images.map((img, imgIdx) => (
+                      <div key={imgIdx} className="shrink-0 w-[280px] md:w-[420px] rounded-xl overflow-hidden border border-[#e8eaed] bg-[#f8f9fa] snap-center">
+                        <Image
+                          src={img}
+                          alt={`${section.title} - image ${imgIdx + 1}`}
+                          width={840}
+                          height={525}
+                          className="w-full h-auto object-cover"
+                        />
+                      </div>
+                    ))}
+                  </div>
+                ) : section.imagePlaceholder ? (
                   <div className="w-full h-[180px] md:h-[260px] bg-[#f8f9fa] border border-dashed border-[#dadce0] rounded-xl flex items-center justify-center text-ink-soft text-[13px] mb-4 px-4 text-center">
                     <div className="flex flex-col items-center gap-2 opacity-60">
                       <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
@@ -181,7 +234,7 @@ export default async function ProjectDetail({ params }: { params: Promise<{ slug
                       {section.imagePlaceholder}
                     </div>
                   </div>
-                )}
+                ) : null}
                 <h3 className="text-[15px] font-medium text-ink-main mb-2" style={{ fontFamily: "'Google Sans', sans-serif" }}>{section.title}</h3>
                 <p className="text-[14px] text-ink-soft leading-relaxed whitespace-pre-wrap">
                   {section.content}
