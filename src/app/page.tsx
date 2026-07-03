@@ -125,7 +125,7 @@ export default function Home() {
                   </div>
                   <div className="flex-1 min-w-0">
                     <h3 className="text-xl md:text-2xl font-medium text-ink-main mb-1" style={{ fontFamily: "'Google Sans', sans-serif" }}>Sanjay S</h3>
-                    <p className="text-[14px] text-green-primary font-medium mb-3">UI Developer</p>
+                    <p className="text-[14px] text-green-primary font-medium mb-3">Application Developer</p>
                     <p className="text-[14px] text-ink-soft leading-relaxed max-w-2xl">
                       React Native & Spring Boot developer — currently building TUGO EATS at Entugo (UK), published IEEE researcher. B.E ECE (2025).
                     </p>
@@ -149,13 +149,35 @@ export default function Home() {
                     <div className="flex flex-col md:flex-row md:items-center gap-3 mt-4 pt-4 border-t border-[#e8eaed]">
                       <div>
                         <div className="text-[13px] font-medium text-ink-main">Entugo (UK) — Remote</div>
-                        <div className="text-[12px] text-ink-soft">UI Developer Intern · Sep 2025 – Present</div>
+                        <div className="text-[12px] text-ink-soft">Application Developer Intern · Sep 2025 – Present</div>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
+
+              {/* Education */}
+            <div className="mt-10">
+              <h2 className="text-[16px] font-medium text-ink-main mb-4" style={{ fontFamily: "'Google Sans', sans-serif" }}>Education</h2>
+              <div className="border border-[#e8eaed] rounded-xl p-5">
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 rounded-xl bg-[#f1f3f4] flex items-center justify-center text-[#5F6368] shrink-0">
+                    <GraduationCap className="w-6 h-6" />
+                  </div>
+                  <div>
+                    <h3 className="text-[15px] font-medium text-ink-main">B.E Electronics and Communication Engineering</h3>
+                    <p className="text-[14px] text-ink-soft mt-0.5">Karpagam Institute of Technology, Coimbatore</p>
+                    <div className="flex items-center gap-4 mt-2 text-[13px] text-ink-soft">
+                      <span>2021 – 2025</span>
+                      <span className="font-medium text-ink-main">CGPA: 7.67</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
             </section>
+
+            
 
             {/* Suggested Projects (horizontal scroll like Play Store) */}
             <section className="pt-8 pb-2">
@@ -329,26 +351,6 @@ export default function Home() {
                 </div>
               ))}
             </div>
-
-            {/* Education */}
-            <div className="mt-10">
-              <h2 className="text-[16px] font-medium text-ink-main mb-4" style={{ fontFamily: "'Google Sans', sans-serif" }}>Education</h2>
-              <div className="border border-[#e8eaed] rounded-xl p-5">
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 rounded-xl bg-[#f1f3f4] flex items-center justify-center text-[#5F6368] shrink-0">
-                    <GraduationCap className="w-6 h-6" />
-                  </div>
-                  <div>
-                    <h3 className="text-[15px] font-medium text-ink-main">B.E Electronics and Communication Engineering</h3>
-                    <p className="text-[14px] text-ink-soft mt-0.5">Karpagam Institute of Technology, Coimbatore</p>
-                    <div className="flex items-center gap-4 mt-2 text-[13px] text-ink-soft">
-                      <span>2021 – 2025</span>
-                      <span className="font-medium text-ink-main">CGPA: 7.64</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
           </div>
         )}
 
@@ -358,10 +360,20 @@ export default function Home() {
             <h2 className="text-[22px] font-medium text-ink-main mb-6" style={{ fontFamily: "'Google Sans', sans-serif" }}>Certifications</h2>
             <div className="space-y-0">
               {[
-                { name: 'React Native', issuer: 'Meta / Coursera', year: '2023', icon: <Award className="w-6 h-6" />, color: '#61DAFB' },
+                { name: 'Fundamentals of React Native', issuer: 'Coding Ninjas', year: '', icon: <Award className="w-6 h-6" />, color: '#61DAFB' },
+                { name: 'React Native', issuer: 'Coursera', year: '', icon: <Award className="w-6 h-6" />, color: '#61DAFB' },
+                { name: 'Generative AI: Turbocharge Mobile App Dev', issuer: 'Coursera', year: '', icon: <Award className="w-6 h-6" />, color: '#4285F4' },
                 { name: 'Java Full Stack Development', issuer: 'Wipro Talent Next', year: '2024', icon: <Award className="w-6 h-6" />, color: '#F89820' },
-                { name: 'OOPs in Java', issuer: 'Coding Ninjas', year: '2024', icon: <Award className="w-6 h-6" />, color: '#F5A623' },
+                { name: 'OOPs in Java', issuer: 'Coding Ninjas', year: '', icon: <Award className="w-6 h-6" />, color: '#F89820' },
+                { name: 'Frontend development with React JS & JS', issuer: 'DevTown', year: '', icon: <Award className="w-6 h-6" />, color: '#F7DF1E' },
+                { name: 'React basics', issuer: 'Coursera', year: '', icon: <Award className="w-6 h-6" />, color: '#61DAFB' },
                 { name: 'AEM Sites for Developer', issuer: 'Adobe', year: '', icon: <Award className="w-6 h-6" />, color: '#FF0000' },
+                { name: 'Django Web Framework', issuer: 'Coursera', year: '', icon: <Award className="w-6 h-6" />, color: '#092E20' },
+                { name: 'Azure: REST API with NodeJS Serverless', issuer: 'Coursera', year: '', icon: <Award className="w-6 h-6" />, color: '#0089D6' },
+                { name: 'SEO with Squarespace', issuer: 'Coursera', year: '', icon: <Award className="w-6 h-6" />, color: '#000000' },
+                { name: 'Basics of Machine Learning', issuer: 'Coding Ninjas', year: '', icon: <Award className="w-6 h-6" />, color: '#F5A623' },
+                { name: 'Android Application Development', issuer: 'LinkedIn Learning', year: '', icon: <Award className="w-6 h-6" />, color: '#0077B5' },
+                { name: 'MongoDB Basics', issuer: 'MongoDB', year: '', icon: <Award className="w-6 h-6" />, color: '#47A248' },
               ].map(cert => (
                 <div key={cert.name} className="flex items-center gap-4 py-4 px-3 rounded-xl hover:bg-[#f1f3f4] transition-colors border-b border-[#e8eaed] last:border-0">
                   <div
