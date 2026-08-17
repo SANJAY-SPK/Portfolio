@@ -52,26 +52,52 @@ export const projects: Project[] = [
     rating: null,
     icon: "💪",
     color: "#FFB300",
+    screenshots: [
+      "/assets/PowerHouse/Home Screen.jpeg",
+      "/assets/PowerHouse/Alert_Screen.jpeg",
+      "/assets/PowerHouse/Checkin_Screen.jpeg",
+      "/assets/PowerHouse/Member_Screen.jpeg",
+      "/assets/PowerHouse/Revenue_Screen.jpeg",
+      "/assets/PowerHouse/Settings_Screen.jpeg",
+    ],
     sections: [
       {
         title: "Project Overview & Core Features",
         content: "Built completely from scratch, the system provides full data persistence and role-based access control. Key features include a real-time dashboard with stat cards and priority alerts, comprehensive member management (search, multi-filter tabs, payment history), session-based check-in (auto-detecting Morning/Evening slots), and custom-built revenue bar charts. The app intelligently aggregates alerts for expiring plans, overdue payments, and inactive members.",
-        imagePlaceholder: "PowerHouse Dashboard & Member List Screens"
+        images: [
+          "/assets/PowerHouse/Home Screen.jpeg",
+          "/assets/PowerHouse/Alert_Screen.jpeg",
+          "/assets/PowerHouse/Checkin_Screen.jpeg"
+        ]
       },
       {
         title: "Tech Stack & Mobile Frontend",
         content: "The frontend is a cross-platform app built on React Native 0.85 and Expo SDK 56 with strict TypeScript safety. It leverages Expo Router for file-based routing and deep linking, Zustand v5 for lightweight global state, and React Native Reanimated 4 for smooth transitions. UI elements use React Native Paper (Material Design) and the data layer is handled by Axios with tokens securely saved via Expo Secure Store (AES encryption).",
-        imagePlaceholder: "Mobile Frontend Architecture & State Flow"
+        images: [
+          "/assets/PowerHouse/Member_Screen.jpeg",
+          "/assets/PowerHouse/Member_Screen2.jpeg",
+          "/assets/PowerHouse/Member_Screen3.jpeg",
+          "/assets/PowerHouse/Member_Screen4.jpeg",
+          "/assets/PowerHouse/Member_Screen5.jpeg"
+        ]
       },
       {
         title: "Spring Boot Backend & Architecture",
         content: "The backend is a production-grade REST API powered by Spring Boot 3.3 (Java 21) and PostgreSQL. It uses Spring Data JPA + Hibernate for ORM, Spring Security + JJWT for stateless authentication, and Spring Validation. Automated scheduled tasks handle status updates (ACTIVE → EXPIRING → EXPIRED). The architecture is highly structured across controllers, services, repositories, DTOs, and security layers, with auto-generated SpringDoc OpenAPI documentation.",
-        imagePlaceholder: "Backend REST API Architecture & Database Schema"
+        images: [
+          "/assets/PowerHouse/Revenue_Screen.jpeg",
+          "/assets/PowerHouse/Revenue_Screen2.jpeg",
+          "/assets/PowerHouse/Revenue_Screen3.jpeg",
+          "/assets/PowerHouse/Revenue_Screen4.jpeg",
+          "/assets/PowerHouse/Revenue_Screen5.jpeg"
+        ]
       },
       {
         title: "Security & Role Management",
         content: "Security is enforced at every layer. The system uses BCrypt for password hashing and stateless JWT tokens with configurable expiration. A custom JwtAuthFilter validates tokens on every protected request. Role-based rendering controls admin versus regular user workflows. On the client side, unauthorized 401 responses auto-trigger logout routines to instantly clean up sessions and local storage.",
-        imagePlaceholder: "JWT Authentication Flow & Secure Token Storage"
+        images: [
+          "/assets/PowerHouse/Settings_Screen.jpeg"
+        ]
       }
     ]
   },
